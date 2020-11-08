@@ -2,6 +2,8 @@
 /* Define helper functions */
 /* ************************************ */
 
+var repo_site = "https://eatreadgamere.github.io/10-ANT"; 
+
 function evalAttentionChecks() {
 	var check_percent = 1
 	if (run_attention_checks) {
@@ -99,7 +101,7 @@ var exp_stage = 'practice'
 var test_stimuli = []
 var choices = [37, 39]
 var path = 'images/'
-var images = [path + 'right_arrow.png', path + 'left_arrow.png', path + 'no_arrow.png']
+var images = [repo_site + 'images/right_arrow.png', repo_site + 'images/left_arrow.png', repo_site + 'images/no_arrow.png']
 //preload
 jsPsych.pluginAPI.preloadImages(images)
 
