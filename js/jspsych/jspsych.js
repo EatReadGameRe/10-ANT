@@ -1,3 +1,5 @@
+
+var repo_site = "https://eatreadgamere.github.io/10-ANT"; 
 /**
  * jspsych.js
  * Josh de Leeuw
@@ -5,6 +7,7 @@
  * documentation: docs.jspsych.org
  *
  **/
+
 var jsPsych = (function() {
 
   var core = {};
@@ -1523,7 +1526,7 @@ jsPsych.pluginAPI = (function() {
         }
       }
 
-      img.src = images[i];
+      img.src = repo_site+ images[i];
     }
   };
 
