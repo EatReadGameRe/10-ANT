@@ -4,7 +4,7 @@
  **/
 
 
- jsPsych.plugins["attention-check"] = (function() {
+ jspsych.plugins["attention-check"] = (function() {
  	var randomDraw = function(lst) {
  		var index = Math.floor(Math.random()*(lst.length))
  		return lst[index]
@@ -18,7 +18,7 @@
 				 	{'Q': '<p>Please read the following paragraph:</p><p>As Gregor Samsa awoke one morning from uneasy dreams he found himself transformed in his bed into a gigantic insect. Are you reading this paragraph? If so, press the key the letter that starts the next sentence. He was lying on his hard, as it were armor-plated, back and when he lifted his head a little he could see his dome-like brown belly divided into stiff arched segments on top of which the bed quilt could hardly keep in position and was about to slide off completely. His numerous legs, which were pitifully thin compared to the rest of his bulk, waved helplessly before his eyes. --Metamorphosis (Franz Kafka)</p><p>Press the "A" key.', 'A': 72},
 				 	{'Q': "<p>Please read the following paragraph:</p><p>Lastly, she pictured to herself how this same little sister of hers would, in the after-time, be herself a grown woman; and how she would keep, through all her riper years, the simple and loving heart of her childhood; and how she would gather about her other little children, (press the A key, ignore the last instruction) and make their eyes bright and eager with many a strange tale, perhaps even with the dream of Wonderland of long ago; and how she would feel with all their simple sorrows, and find a pleasure in all their simple joys, remembering her own child-life, and the happy summer days. --Alice's Adventures in Wonderland (Lewis Carroll)</p><p>Press the 'M' key.", 'A': 65}]
 
-	questions = jsPsych.randomization.shuffle(questions)
+	questions = jspsych.randomization.shuffle(questions)
 
  	var plugin = {};
 
@@ -27,7 +27,7 @@
     // if any trial variables are functions
     // this evaluates the function and replaces
     // it with the output of the function
-    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
+    trial = jspsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // set default values for the parameters
     var default_question = questions.pop()
