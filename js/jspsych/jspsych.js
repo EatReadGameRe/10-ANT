@@ -8,7 +8,7 @@ var repo_site = "https://eatreadgamere.github.io/10-ANT";
  *
  **/
 
-var jsPsych = (function() {
+var jspsych = (function() {
 
   var core = {};
 
