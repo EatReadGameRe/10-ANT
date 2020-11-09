@@ -22,17 +22,15 @@
 <script src='https://eatreadgamere.github.io/10-ANT/js/jspsych/poldrack_plugins/poldrack_utils.js'></script>
 <script src="https://eatreadgamere.github.io/10-ANT/js/util.js"></script>	
 <script>
-    var Lab      = $.QueryString.Lab      ? $.QueryString.Lab      : 0;  // 1 = running in the lab
-    var PostTask = $.QueryString.PostTask ? $.QueryString.PostTask : 0;  // 1 = add post-task block
-    var Practise = $.QueryString.Practise ? $.QueryString.Practise : 1;  // 1 = include practice block
-    var Skip     = $.QueryString.Skip     ? $.QueryString.Skip     : 0;  // 1 = skip task
-</script>
-<script>
-    export{Lab};
-    export{PostTask};
-    export{Practise};
-    export{Skip};
-    </script> 
+    const Lab      = $.QueryString.Lab      ? $.QueryString.Lab      : 0;  // 1 = running in the lab
+    const PostTask = $.QueryString.PostTask ? $.QueryString.PostTask : 0;  // 1 = add post-task block
+    const Practise = $.QueryString.Practise ? $.QueryString.Practise : 1;  // 1 = include practice block
+    const Skip     = $.QueryString.Skip     ? $.QueryString.Skip     : 0;  // 1 = skip task;
+    module.exports = {Lab};
+    module.exports = {PostTask};
+    module.exports {Practise};
+    module.exports {Skip};
+</script> 
 </head>
 
 <body>
