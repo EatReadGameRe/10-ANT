@@ -32,7 +32,7 @@ var focuser = new focus_tracker(window);
 */
 function addID(exp_id) {
   var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY) 
-	jsPsych.data.addDataToLastTrial({
+	jspsych.data.addDataToLastTrial({
 		exp_id: exp_id,
 		full_screen: isFullScreen,
 		focus_shifts: focuser.get_shifts()
@@ -41,7 +41,7 @@ function addID(exp_id) {
 }
 
 /*
-* Adds a display stage rather than the generic jsPsych background element
+* Adds a display stage rather than the generic jspsych background element
 */
 function getDisplayElement() {
   $('<div class = display_stage_background></div>').appendTo('body')
