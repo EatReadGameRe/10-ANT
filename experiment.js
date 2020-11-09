@@ -5,7 +5,7 @@
 function evalAttentionChecks() {
 	var check_percent = 1
 	if (run_attention_checks) {
-		var attention_check_trials = jsPsych.data.getTrialsOfType('attention-check')
+		var attention_check_trials = jspsych.data.getTrialsOfType('attention-check')
 		var checks_passed = 0
 		for (var i = 0; i < attention_check_trials.length; i++) {
 			if (attention_check_trials[i].correct === true) {
@@ -21,7 +21,7 @@ function assessPerformance() {
 	/* Function to calculate the "credit_var", which is a boolean used to
 	credit individual experiments in expfactory. 
 	 */
-	var experiment_data = jsPsych.data.getTrialsOfType('poldrack-single-stim')
+	var experiment_data = jspsych.data.getTrialsOfType('poldrack-single-stim')
 	var missed_count = 0
 	var trial_count = 0
 	var rt_array = []
@@ -59,7 +59,7 @@ function assessPerformance() {
 	})
 	var missed_percent = missed_count/trial_count
 	credit_var = (missed_percent < 0.4 && avg_rt > 200 && responses_ok)
-	jsPsych.data.addDataToLastTrial({"credit_var": credit_var})
+	jspsych.data.addDataToLastTrial({"credit_var": credit_var})
 
 }
 
@@ -69,13 +69,13 @@ var getInstructFeedback = function() {
 }
 
 var post_trial_gap = function() {
-	var curr_trial = jsPsych.progress().current_trial_global
-	return 3500 - jsPsych.data.getData()[curr_trial - 1].rt - jsPsych.data.getData()[curr_trial - 4].block_duration
+	var curr_trial = jspsych.progress().current_trial_global
+	return 3500 - jspsych.data.getData()[curr_trial - 1].rt - jspsych.data.getData()[curr_trial - 4].block_duration
 }
 
 var get_RT = function() {
-	var curr_trial = jsPsych.progress().current_trial_global
-	return jsPsych.data.getData()[curr_trial].rt
+	var curr_trial = jspsych.progress().current_trial_global
+	return jspsych.data.getData()[curr_trial].rt
 }
 
 var getInstructFeedback = function() {
@@ -106,7 +106,7 @@ var choices = [37, 39]
 //var path = 'https://eatreadgamere.github.io/10-ANT/images/'
 var images = [ 'https://eatreadgamere.github.io/10-ANT/images/right_arrow.png', 'https://eatreadgamere.github.io/10-ANT/images/left_arrow.png', 'https://eatreadgamere.github.io/10-ANT/images/no_arrow.png']
 //preload
-jsPsych.pluginAPI.preloadImages(images)
+jspsych.pluginAPI.preloadImages(images)
 
 for (l = 0; l < locations.length; l++) {
 	var loc = locations[l]
@@ -186,14 +186,13 @@ for (l = 0; l < locations.length; l++) {
 }
 
 /* set up 24 practice trials. Included all nocue up trials, center cue up trials, double cue down trials, and 6 spatial trials (3 up, 3 down) */
-var practice_block = jsPsych.randomization.repeat(test_stimuli.slice(0, 12).concat(test_stimuli.slice(
+var practice_block = jspsych.randomization.repeat(test_stimuli.slice(0, 12).concat(test_stimuli.slice(
 	18, 21)).concat(test_stimuli.slice(36, 45)), 1, true);
 
 /* set up repeats for three test blocks */
-var block1_trials = jsPsych.randomization.repeat($.extend(true, [], test_stimuli), 1, true);
-var block2_trials = jsPsych.randomization.repeat($.extend(true, [], test_stimuli), 1, true);
-var block3_trials = jsPsych.randomization.repeat($.extend(true, [], test_stimuli), 1, true);
-var blocks = [block1_trials, block2_trials, block3_trials]
+var block1_trials = jspsych.randomization.repeat($.extend(true, [], test_stimuli), 1, true);
+var block2_trials = jspsych.randomization.repeat($.extend(true, [], test_stimuli), 1, true);
+var blocks = [block1_trials, block2_trials]
 
 
 /* ************************************ */
@@ -325,7 +324,7 @@ var fixation = {
 	timing_stim: 400,
 	timing_response: 400,
 	on_finish: function() {
-		jsPsych.data.addDataToLastTrial({
+		jspsych.data.addDataToLastTrial({
 			exp_stage: exp_stage
 		})
 	}
@@ -343,7 +342,7 @@ var no_cue = {
 	timing_stim: 100,
 	timing_response: 100,
 	on_finish: function() {
-		jsPsych.data.addDataToLastTrial({
+		jspsych.data.addDataToLastTrial({
 			exp_stage: exp_stage
 		})
 	}
@@ -361,7 +360,7 @@ var center_cue = {
 	timing_stim: 100,
 	timing_response: 100,
 	on_finish: function() {
-		jsPsych.data.addDataToLastTrial({
+		jspsych.data.addDataToLastTrial({
 			exp_stage: exp_stage
 		})
 	}
@@ -380,7 +379,7 @@ var double_cue = {
 	timing_stim: 100,
 	timing_response: 100,
 	on_finish: function() {
-		jsPsych.data.addDataToLastTrial({
+		jspsych.data.addDataToLastTrial({
 			exp_stage: exp_stage
 		})
 	}
@@ -457,7 +456,7 @@ for (i = 0; i < block.data.length; i++) {
 		show_stim_with_feedback: false,
 		timing_post_trial: 0,
 		on_finish: function() {
-			jsPsych.data.addDataToLastTrial({
+			jspsych.data.addDataToLastTrial({
 				exp_stage: exp_stage
 			})
 		}
@@ -548,7 +547,7 @@ for (b = 0; b < blocks.length; b++) {
 			timing_post_trial: 0,
 			on_finish: function(data) {
 				correct = data.key_press === data.correct_response
-				jsPsych.data.addDataToLastTrial({
+				jspsych.data.addDataToLastTrial({
 					correct: correct,
 					exp_stage: exp_stage
 				})
