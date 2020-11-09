@@ -8,11 +8,11 @@
  **/
 
 
-jsPsych.plugins["poldrack-categorize"] = (function() {
+jspsych.plugins["poldrack-categorize"] = (function() {
 
   var plugin = {};
 
-  jsPsych.pluginAPI.registerPreload('animation', 'stimulus', 'image');
+  jspsych.pluginAPI.registerPreload('animation', 'stimulus', 'image');
 
   plugin.trial = function(display_element, trial) {
 
@@ -36,7 +36,7 @@ jsPsych.plugins["poldrack-categorize"] = (function() {
     // if any trial variables are functions
     // this evaluates the function and replaces
     // it with the output of the function
-    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
+    trial = jspsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // this array holds handlers from setTimeout calls
     // that need to be cleared if the trial ends early
@@ -84,7 +84,7 @@ jsPsych.plugins["poldrack-categorize"] = (function() {
       }
 
       // clear keyboard listener
-      jsPsych.pluginAPI.cancelAllKeyboardResponses();
+      jspsych.pluginAPI.cancelAllKeyboardResponses();
       var correct = false;
       if (trial.key_answer == info.key) {
         correct = true;
@@ -142,7 +142,7 @@ jsPsych.plugins["poldrack-categorize"] = (function() {
       }
     }
 
-    jsPsych.pluginAPI.getKeyboardResponse({
+    jspsych.pluginAPI.getKeyboardResponse({
       callback_function: after_response,
       valid_responses: trial.choices,
       rt_method: 'date',
@@ -200,7 +200,7 @@ jsPsych.plugins["poldrack-categorize"] = (function() {
           endTrial();
         }
 
-        jsPsych.pluginAPI.getKeyboardResponse({
+        jspsych.pluginAPI.getKeyboardResponse({
           callback_function: after_forced_response,
           valid_responses: [trial.key_answer],
           rt_method: 'date',
@@ -218,7 +218,7 @@ jsPsych.plugins["poldrack-categorize"] = (function() {
 
     function endTrial() {
       display_element.html("");
-      jsPsych.finishTrial(trial_data);
+      jspsych.finishTrial(trial_data);
     }
 
   };
