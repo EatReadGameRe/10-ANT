@@ -9,7 +9,7 @@
  */
 
 
-jsPsych.plugins['survey-text'] = (function() {
+jspsych.plugins['survey-text'] = (function() {
 
   var plugin = {};
 
@@ -32,7 +32,7 @@ jsPsych.plugins['survey-text'] = (function() {
     // if any trial variables are functions
     // this evaluates the function and replaces
     // it with the output of the function
-    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
+    trial = jspsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // show preamble text
     display_element.append($('<div>', {
@@ -87,7 +87,7 @@ jsPsych.plugins['survey-text'] = (function() {
       display_element.html('');
 
       // next trial
-      jsPsych.finishTrial(trialdata);
+      jspsych.finishTrial(trialdata);
     });
 
     var startTime = (new Date()).getTime();
