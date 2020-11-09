@@ -12,5 +12,3 @@
         return params;
     })(window.location.search.substr(1).split('&'))
 })(jQuery);
-
-export function ($)
