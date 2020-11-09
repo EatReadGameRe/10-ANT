@@ -8,11 +8,11 @@
  * to be tested
  **/
  
-jsPsych.plugins["single-stim-button"] = (function() {
+jspsych.plugins["single-stim-button"] = (function() {
 
   var plugin = {};
 
-  jsPsych.pluginAPI.registerPreload('single-stim-button', 'stimulus', 'image')
+  jspsych.pluginAPI.registerPreload('single-stim-button', 'stimulus', 'image')
 
   plugin.trial = function(display_element, trial) {
 
@@ -33,7 +33,7 @@ jsPsych.plugins["single-stim-button"] = (function() {
     // to dynamically adjust the contents of a trial as a result
     // of other trials, among other uses. you can leave this out,
     // but in general it should be included
-    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
+    trial = jspsych.pluginAPI.evaluateFunctionParameters(trial);
 
     var start_time = (new Date()).getTime();
 	var response = {rt: -1, mouse: -1};
