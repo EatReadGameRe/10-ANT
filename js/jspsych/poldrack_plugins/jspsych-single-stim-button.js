@@ -87,7 +87,7 @@ jspsych.plugins["single-stim-button"] = (function() {
 		display_element.html('');
 
 		// move on to the next trial
-		jsPsych.finishTrial(trial_data);
+		jspsych.finishTrial(trial_data);
 	};		
 		
 	// display stimulus
