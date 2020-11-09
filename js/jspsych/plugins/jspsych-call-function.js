@@ -7,7 +7,7 @@
  *
  **/
 
-jsPsych.plugins['call-function'] = (function() {
+jspsych.plugins['call-function'] = (function() {
 
   var plugin = {};
 
@@ -24,7 +24,7 @@ jsPsych.plugins['call-function'] = (function() {
     };
 
 
-    jsPsych.finishTrial(trial_data);
+    jspsych.finishTrial(trial_data);
   };
 
   return plugin;
