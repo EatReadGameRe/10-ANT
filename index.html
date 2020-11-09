@@ -45,7 +45,7 @@ $(document).ready(function() {
         fullscreen = true;
     }
 
-    jsPsych.init({
+    jspsych.init({
              timeline: timeline,
              display_element: "getDisplayElement",
              fullscreen: fullscreen,
@@ -55,7 +55,7 @@ $(document).ready(function() {
              on_finish: function(data){
                  // Serialize the data
                  var promise = new Promise(function(resolve, reject) {
-                     var data = jsPsych.data.dataAsJSON();
+                     var data = jspsych.data.dataAsJSON();
                      resolve(data);
                  })
                  promise.then(function(data) {
@@ -74,7 +74,7 @@ $(document).ready(function() {
                              } else {
                                  // if error, assume local save
                                 if (Skip == 0) {
-                                    jsPsych.data.localSave('attention-network-task-no-feedback_results.json', 'json');
+                                    jspsych.data.localSave('attention-network-task-no-feedback_results.json', 'json');
                                 }
                             }
                          }
