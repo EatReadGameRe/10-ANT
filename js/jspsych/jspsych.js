@@ -112,7 +112,7 @@ var jsPsych = (function() {
     return (new Date()).getTime() - exp_start_time.getTime();
   };
 
-  core.display_stage = function() {
+  core.getDisplayElement = function() {
     return DOM_target;
   };
 
@@ -753,7 +753,8 @@ jsPsych.data = (function() {
       data_string = module.dataAsCSV();
     }
 
-    var display_element = jsPsych.display_stage();
+   var display_element = jsPsych.getDisplayElement();
+
 
     display_element.append($('<pre id="jspsych-data-display"></pre>'));
 
@@ -780,7 +781,7 @@ jsPsych.data = (function() {
       blobURL = window.URL.createObjectURL(blobToSave);
     }
 
-    var display_element = jsPsych.display_stage();
+      var display_element = jsPsych.getDisplayElement();
 
     display_element.append($('<a>', {
       id: 'jspsych-download-as-text-link',
