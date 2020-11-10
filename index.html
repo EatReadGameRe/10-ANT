@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
     jsPsych.init({
              timeline: attention_network_task_experiment,
-             display_element: "display_stage",
+             display_element: "getDisplayElement",
              fullscreen: true,
              on_trial_finish: function(data){
                addID('attention-network-task')
