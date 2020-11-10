@@ -5,7 +5,7 @@
  * documentation: docs.jspsych.org
  *
  **/
-var jsPsych = (function() {
+var jspsych = (function() {
 
   var core = {};
 
@@ -85,7 +85,7 @@ var jsPsych = (function() {
 
     // preloading
     if(opts.auto_preload){
-      jsPsych.pluginAPI.autoPreload(timeline, startExperiment);
+      jspsych.pluginAPI.autoPreload(timeline, startExperiment);
     } else {
       startExperiment();
     }
@@ -119,10 +119,10 @@ var jsPsych = (function() {
   core.finishTrial = function(data) {
     // write the data from the trial
     data = typeof data == 'undefined' ? {} : data;
-    jsPsych.data.write(data);
+    jspsych.data.write(data);
 
     // get back the data with all of the defaults in
-    var trial_data = jsPsych.data.getDataByTrialIndex(global_trial_index);
+    var trial_data = jspsych.data.getDataByTrialIndex(global_trial_index);
 
     // handle callback at plugin level
     if (typeof current_trial.on_finish === 'function') {
@@ -260,7 +260,7 @@ var jsPsych = (function() {
           randomize_order = parameters.randomize_order;
         }
         if (randomize_order === true) {
-          timeline = jsPsych.randomization.shuffle(timeline);
+          timeline = jspsych.randomization.shuffle(timeline);
         }
       }
       // if there is no timeline parameter, then this node is a trial node
@@ -269,7 +269,7 @@ var jsPsych = (function() {
         var trial_type = parameters.type;
         if (typeof trial_type == 'undefined') {
           console.error('Trial level node is missing the "type" parameter. The parameters for the node are: ' + JSON.stringify(parameters));
-        } else if (typeof jsPsych.plugins[trial_type] == 'undefined') {
+        } else if (typeof jspsych.plugins[trial_type] == 'undefined') {
           console.error('No plugin loaded for trials of type "' + trial_type + '"');
         }
         // create a deep copy of the parameters for the trial
@@ -428,7 +428,7 @@ var jsPsych = (function() {
         }
 
         if (randomize_order === true) {
-          timeline = jsPsych.randomization.shuffle(timeline);
+          timeline = jspsych.randomization.shuffle(timeline);
         }
       } else {
         // reset the parameters of this trial to the original parameters, which
@@ -477,7 +477,7 @@ var jsPsych = (function() {
 
     // get all the data generated within this node
     this.generatedData = function() {
-      return jsPsych.data.getDataByTimelineNode(this.ID());
+      return jspsych.data.getDataByTimelineNode(this.ID());
     }
 
     // get all the trials of a particular type
@@ -546,7 +546,7 @@ var jsPsych = (function() {
   }
 
   function finishExperiment() {
-    opts.on_finish(jsPsych.data.getData());
+    opts.on_finish(jspsych.data.getData());
 
     if(typeof timeline.end_message !== 'undefined'){
       DOM_target.html(timeline.end_message);
@@ -578,7 +578,7 @@ var jsPsych = (function() {
     }
 
     // execute trial method
-    jsPsych.plugins[trial.type].trial(display_element, trial);
+    jspsych.plugins[trial.type].trial(display_element, trial);
   }
 
   function drawProgressBar() {
@@ -586,7 +586,7 @@ var jsPsych = (function() {
   }
 
   function updateProgressBar() {
-    var progress = jsPsych.progress();
+    var progress = jspsych.progress();
 
     $('#jspsych-progressbar-inner').css('width', progress.percent_complete + "%");
   }
@@ -594,9 +594,9 @@ var jsPsych = (function() {
   return core;
 })();
 
-jsPsych.plugins = {};
+jspsych.plugins = {};
 
-jsPsych.data = (function() {
+jspsych.data = (function() {
 
   var module = {};
 
@@ -612,23 +612,23 @@ jsPsych.data = (function() {
 
   module.write = function(data_object) {
 
-    var progress = jsPsych.progress();
-    var trial = jsPsych.currentTrial();
+    var progress = jspsych.progress();
+    var trial = jspsych.currentTrial();
 
     //var trial_opt_data = typeof trial.data == 'function' ? trial.data() : trial.data;
 
     var default_data = {
       'trial_type': trial.type,
       'trial_index': progress.current_trial_global,
-      'time_elapsed': jsPsych.totalTime(),
-      'internal_node_id': jsPsych.currentTimelineNodeID()
+      'time_elapsed': jspsych.totalTime(),
+      'internal_node_id': jspsych.currentTimelineNodeID()
     };
 
     var ext_data_object = $.extend({}, data_object, trial.data, default_data, dataProperties);
 
     allData.push(ext_data_object);
 
-    var initSettings = jsPsych.initSettings();
+    var initSettings = jspsych.initSettings();
     initSettings.on_data_update(ext_data_object);
   };
 
@@ -671,7 +671,7 @@ jsPsych.data = (function() {
     } else if (format == 'CSV' || format == 'csv') {
       data_string = module.dataAsCSV();
     } else {
-      throw new Error('invalid format specified for jsPsych.data.localSave');
+      throw new Error('invalid format specified for jspsych.data.localSave');
     }
 
     saveTextToFile(data_string, filename);
@@ -750,7 +750,7 @@ jsPsych.data = (function() {
       data_string = module.dataAsCSV();
     }
 
-    var display_element = jsPsych.getDisplayElement();
+    var display_element = jspsych.getDisplayElement();
 
     display_element.append($('<pre id="jspsych-data-display"></pre>'));
 
@@ -777,7 +777,7 @@ jsPsych.data = (function() {
       blobURL = window.URL.createObjectURL(blobToSave);
     }
 
-    var display_element = jsPsych.getDisplayElement();
+    var display_element = jspsych.getDisplayElement();
 
     display_element.append($('<a>', {
       id: 'jspsych-download-as-text-link',
@@ -857,7 +857,7 @@ jsPsych.data = (function() {
 
 })();
 
-jsPsych.turk = (function() {
+jspsych.turk = (function() {
 
   var module = {};
 
@@ -898,7 +898,7 @@ jsPsych.turk = (function() {
   // core.submitToTurk will submit a MechanicalTurk ExternalHIT type
   module.submitToTurk = function(data) {
 
-    var turkInfo = jsPsych.turk.turkInfo();
+    var turkInfo = jspsych.turk.turkInfo();
     var assignmentId = turkInfo.assignmentId;
     var turkSubmitTo = turkInfo.turkSubmitTo;
 
@@ -924,7 +924,7 @@ jsPsych.turk = (function() {
 
 })();
 
-jsPsych.randomization = (function() {
+jspsych.randomization = (function() {
 
   var module = {};
 
@@ -1024,7 +1024,7 @@ jsPsych.randomization = (function() {
   module.sample = function(arr, size, withReplacement) {
     if (withReplacement == false) {
       if (size > arr.length) {
-        console.error("jsPsych.randomization.sample cannot take a sample " +
+        console.error("jspsych.randomization.sample cannot take a sample " +
           "larger than the size of the set of items to sample from when " +
           "sampling without replacement.");
       }
@@ -1123,7 +1123,7 @@ jsPsych.randomization = (function() {
 
 })();
 
-jsPsych.pluginAPI = (function() {
+jspsych.pluginAPI = (function() {
 
   var module = {};
 
@@ -1529,7 +1529,7 @@ jsPsych.pluginAPI = (function() {
 
   module.registerPreload = function(plugin_name, parameter, media_type) {
     if (!(media_type == 'audio' || media_type == 'image')) {
-      console.error('Invalid media_type parameter for jsPsych.pluginAPI.registerPreload. Please check the plugin file.');
+      console.error('Invalid media_type parameter for jspsych.pluginAPI.registerPreload. Please check the plugin file.');
     }
 
     var preload = {
