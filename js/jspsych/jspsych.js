@@ -1,4 +1,4 @@
-**
+/**
  * jspsych.js
  * Josh de Leeuw
  *
