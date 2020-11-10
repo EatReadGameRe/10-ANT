@@ -32,7 +32,7 @@ jspsych.plugins.text = (function() {
       var trialdata = {
         "rt": info.rt,
         "key_press": info.key
-      }
+      };
 
       jspsych.finishTrial(trialdata);
 
