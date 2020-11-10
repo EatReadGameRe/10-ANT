@@ -593,8 +593,6 @@ var jspsych = (function() {
   return core;
   }})();
 
-jspsych.plugins = {};
-
 jspsych.data = (function() {
 
   var module = {};
