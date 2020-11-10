@@ -9,7 +9,7 @@
  *
  */
 
-jspsych.plugins.text = (function() {
+jsPsych.plugins.text = (function() {
 
   var plugin = {};
 
@@ -20,7 +20,7 @@ jspsych.plugins.text = (function() {
     // if any trial variables are functions
     // this evaluates the function and replaces
     // it with the output of the function
-    trial = jspsych.pluginAPI.evaluateFunctionParameters(trial);
+    trial = jsPsych.pluginAPI.evaluateFunctionParameters(trial);
 
     // set the HTML of the display target to replaced_text.
     display_element.html(trial.text);
@@ -32,9 +32,9 @@ jspsych.plugins.text = (function() {
       var trialdata = {
         "rt": info.rt,
         "key_press": info.key
-      };
+      }
 
-      jspsych.finishTrial(trialdata);
+      jsPsych.finishTrial(trialdata);
 
     };
 
@@ -56,7 +56,7 @@ jspsych.plugins.text = (function() {
       display_element.click(mouse_listener);
       var start_time = (new Date()).getTime();
     } else {
-      jspsych.pluginAPI.getKeyboardResponse({
+      jsPsych.pluginAPI.getKeyboardResponse({
         callback_function: after_response,
         valid_responses: trial.cont_key,
         rt_method: 'date',
