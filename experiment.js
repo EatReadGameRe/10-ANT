@@ -103,7 +103,7 @@ var current_trial = 0
 var exp_stage = 'practice'
 var test_stimuli = []
 var choices = [37, 39]
-var path = 'images/'
+var path = 'https://eatreadgamere.github.io/10-ANT/images'
 var images = [path + 'right_arrow.png', path + 'left_arrow.png', path + 'no_arrow.png']
 //preload
 jspsych.pluginAPI.preloadImages(images)
