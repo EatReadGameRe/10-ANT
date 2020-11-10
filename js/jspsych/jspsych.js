@@ -1,4 +1,4 @@
-/**
+**
  * jspsych.js
  * Josh de Leeuw
  *
@@ -480,13 +480,10 @@ var jsPsych = (function() {
       return jsPsych.data.getDataByTimelineNode(this.ID());
     }
 
-     // get all the trials of a particular type
+    // get all the trials of a particular type
     this.trialsOfType = function(type) {
-      if (type == undefined){
-        console.log(type.not);
-      }
       if (timeline.length == 0) {
-        if (trial_data == type) {
+        if (trial_data.type == type) {
           return trial_data;
         } else {
           return [];
@@ -499,7 +496,7 @@ var jsPsych = (function() {
         }
         return trials;
       }
-    };
+    }
   }
 
   function startExperiment() {
@@ -753,8 +750,7 @@ jsPsych.data = (function() {
       data_string = module.dataAsCSV();
     }
 
-   var display_element = jsPsych.getDisplayElement();
-
+    var display_element = jsPsych.getDisplayElement();
 
     display_element.append($('<pre id="jspsych-data-display"></pre>'));
 
@@ -781,7 +777,7 @@ jsPsych.data = (function() {
       blobURL = window.URL.createObjectURL(blobToSave);
     }
 
-      var display_element = jsPsych.getDisplayElement();
+    var display_element = jsPsych.getDisplayElement();
 
     display_element.append($('<a>', {
       id: 'jspsych-download-as-text-link',
