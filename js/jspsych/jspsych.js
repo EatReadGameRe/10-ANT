@@ -480,8 +480,7 @@ var jsPsych = (function() {
       return jsPsych.data.getDataByTimelineNode(this.ID());
     }
 
-    // get all the trials of a particular type
-    var type = []
+     // get all the trials of a particular type
     this.trialsOfType = function(type) {
       if (timeline.length == 0) {
         if (trial_data.type == type) {
@@ -497,7 +496,7 @@ var jsPsych = (function() {
         }
         return trials;
       }
-    }
+    };
   }
 
   function startExperiment() {
