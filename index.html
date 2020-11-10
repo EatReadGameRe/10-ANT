@@ -25,6 +25,31 @@
 <script src='js/jspsych/poldrack_plugins/poldrack_utils.js'></script>
 <script src='experiment.js'></script>
 
+<style>
+    #display_stage_background {
+        width: 100vw;
+        background-color: white;
+        z-index: -1;
+    }
+
+    #display_stage {
+        position: fixed;
+        left: 1vw;
+        top: 1vh;
+        height: 98vh;
+        width: 98vw;
+        background-color: white;
+        box-shadow: 1px 1px 1px #999;
+        border-radius: 15px;
+        z-index: 0;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+</style>
+
+<div id='display_stage_background'></div>
+<div id='display_stage'></div>
+
 <script>
 $( document ).ready(function() {
 
