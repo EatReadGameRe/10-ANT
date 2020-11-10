@@ -43,7 +43,7 @@ function addID(exp_id) {
 /*
 * Adds a display stage rather than the generic jsPsych background element
 */
-function getDisplayElement() {
+function display_stage() {
   $('<div class = display_stage_background></div>').appendTo('body')
   return $('<div class = display_stage></div>').appendTo('body')
 }
