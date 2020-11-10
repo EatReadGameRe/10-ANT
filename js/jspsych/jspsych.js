@@ -481,8 +481,8 @@ var jsPsych = (function() {
     }
 
     // get all the trials of a particular type
-var type = []; 
-    this.trialsOfType = function(var type) {
+    var type = []; 
+    this.trialsOfType = function(type) {
         if (timeline.length == 0) {
         if (trial_data.type == type) {
           return trial_data;
