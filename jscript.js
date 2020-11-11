@@ -1,4 +1,3 @@
-<script>
 $( document ).ready(function() {
 
     jsPsych.init({
@@ -6,7 +5,7 @@ $( document ).ready(function() {
              display_element: "getDisplayElement",
              fullscreen: true,
              on_trial_finish: function(data){
-               addID('attention-network-task')
+               addID('attention-network-task');
              },
 
              on_finish: function(data){
@@ -15,7 +14,7 @@ $( document ).ready(function() {
                  var promise = new Promise(function(resolve, reject) {
                      var data = jsPsych.data.dataAsJSON();
                      resolve(data);
-                 })
+                 });
 
                  promise.then(function(data) {
 
@@ -24,7 +23,7 @@ $( document ).ready(function() {
                          type: "POST",
                          url: '/save',
                          data: { "data": data },
-                         success: function(){ document.location = "/next" },
+                         success: function(){ document.location = "/next"; },
                          dataType: "application/json",
 
                          // Endpoint not running, local save
@@ -38,9 +37,8 @@ $( document ).ready(function() {
                              }
                          }
                      });
-                 })
+                 });
              }
 
       });
 });
-</script>
