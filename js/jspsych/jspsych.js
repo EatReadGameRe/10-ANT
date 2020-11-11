@@ -70,7 +70,7 @@ var jsPsych = (function() {
 
     // set target
     if (typeof window[opts.display_element] == 'function') {
-      DOM_target = window[opts.display_element]();
+      DOM_target = window[opts.display_element]()
     } else {
       DOM_target = opts.display_element;
     }    
@@ -93,7 +93,7 @@ var jsPsych = (function() {
 
   core.progress = function() {
 
-    var percent_complete = timeline.percentComplete();
+    var percent_complete = timeline.percentComplete()
 
     var obj = {
       "total_trials": timeline.length(),
@@ -171,11 +171,11 @@ var jsPsych = (function() {
   core.endExperiment = function(end_message) {
     timeline.end_message = end_message;
     timeline.end();
-  };
+  }
 
   core.endCurrentTimeline = function() {
     timeline.endActiveNode();
-  };
+  }
 
   core.currentTrial = function() {
     return current_trial;
@@ -290,7 +290,7 @@ var jsPsych = (function() {
         return 1;
       }
       return length;
-    };
+    }
 
     // recursively get the next trial to run.
     // if this node is a leaf (trial), then return the trial.
@@ -305,7 +305,7 @@ var jsPsych = (function() {
           return timeline[current_location].trial();
         }
       }
-    };
+    }
 
     // update the current trial node to be completed
     // returns true if the node is complete after advance
@@ -348,7 +348,7 @@ var jsPsych = (function() {
         done_flag = true;
         return true;
       }
-    };
+    }
 
     // return true if the node is completely done (no more possible trials)
     // otherwise, return false
@@ -397,12 +397,12 @@ var jsPsych = (function() {
       }
 
       return false;
-    };
+    }
 
     // check the status of the done flag
     this.isComplete = function() {
       return done_flag;
-    };
+    }
 
     // return the percentage of trials completed, grouped at the first child level
     // counts a set of trials as complete when the child node is done
@@ -414,8 +414,8 @@ var jsPsych = (function() {
           completed_trials += timeline[i].length();
         }
       }
-      return (completed_trials / total_trials * 100);
-    };
+      return (completed_trials / total_trials * 100)
+    }
 
     // reset the location pointer to the start of the timeline, and reset all the
     // child nodes on the timeline.
@@ -436,12 +436,12 @@ var jsPsych = (function() {
         trial_data = $.extend(true, {}, parameters);
       }
       current_iteration++;
-    };
+    }
 
     // mark this node as finished
     this.end = function() {
       done_flag = true;
-    };
+    }
 
     // recursively end whatever sub-node is running the current trial
     this.endActiveNode = function() {
@@ -451,7 +451,7 @@ var jsPsych = (function() {
       } else {
         timeline[current_location].endActiveNode();
       }
-    };
+    }
 
     // get a unique ID associated with this node
     // the ID reflects the current iteration through this node.
@@ -464,7 +464,7 @@ var jsPsych = (function() {
         id += relative_id + "." + current_iteration;
         return id;
       }
-    };
+    }
 
     // get the ID of the active trial
     this.activeID = function() {
@@ -473,12 +473,12 @@ var jsPsych = (function() {
       } else {
         return timeline[current_location].activeID();
       }
-    };
+    }
 
     // get all the data generated within this node
     this.generatedData = function() {
       return jsPsych.data.getDataByTimelineNode(this.ID());
-    };
+    }
 
     // get all the trials of a particular type
     this.trialsOfType = function(type) {
@@ -496,7 +496,7 @@ var jsPsych = (function() {
         }
         return trials;
       }
-    };
+    }
   }
 
   function startExperiment() {
@@ -650,7 +650,7 @@ jsPsych.data = (function() {
       throw new Error("Cannot add data to last trial - no data recorded so far");
     }
     allData[allData.length - 1] = $.extend({}, allData[allData.length - 1], data);
-  };
+  }
 
   module.dataAsCSV = function() {
     var dataObj = module.getData();
@@ -721,7 +721,7 @@ jsPsych.data = (function() {
       }
     }
     return undefined;
-  };
+  }
 
   module.getLastTimelineData = function() {
     var lasttrial = module.getLastTrialData();
@@ -733,7 +733,7 @@ jsPsych.data = (function() {
       var lastnodedata = module.getDataByTimelineNode(parent_node_id);
       return lastnodedata;
     }
-  };
+  }
 
   module.displayData = function(format) {
     format = (typeof format === 'undefined') ? "json" : format.toLowerCase();
@@ -759,11 +759,11 @@ jsPsych.data = (function() {
 
   module.urlVariables = function() {
     return query_string;
-  };
+  }
 
   module.getURLVariable = function(whichvar){
     return query_string[whichvar];
-  };
+  }
   // private function to save text file on local drive
 
   function saveTextToFile(textstr, filename) {
@@ -887,7 +887,7 @@ jsPsych.turk = (function() {
 
     turk.previewMode = (turk.assignmentId == "ASSIGNMENT_ID_NOT_AVAILABLE");
 
-    turk.outsideTurk = (!turk.previewMode && turk.hitId === "" && turk.assignmentId == "" && turk.workerId == "");
+    turk.outsideTurk = (!turk.previewMode && turk.hitId === "" && turk.assignmentId == "" && turk.workerId == "")
 
     turk_info = turk;
 
@@ -982,11 +982,11 @@ jsPsych.randomization = (function() {
     }
 
     return out;
-  };
+  }
 
   module.shuffle = function(arr) {
     return shuffle(arr);
-  };
+  }
 
   module.shuffleNoRepeats = function(arr, equalityTest) {
     // define a default equalityTest
@@ -997,7 +997,7 @@ jsPsych.randomization = (function() {
         } else {
           return false;
         }
-      };
+      }
     }
 
     var random_shuffle = shuffle(arr);
@@ -1019,7 +1019,7 @@ jsPsych.randomization = (function() {
     }
 
     return random_shuffle;
-  };
+  }
 
   module.sample = function(arr, size, withReplacement) {
     if (withReplacement == false) {
@@ -1039,7 +1039,7 @@ jsPsych.randomization = (function() {
       }
     }
     return samp;
-  };
+  }
 
   module.factorial = function(factors, repetitions, unpack) {
 
@@ -1070,7 +1070,7 @@ jsPsych.randomization = (function() {
     var with_repetitions = module.repeat(factor_combinations, repetitions, unpack);
 
     return with_repetitions;
-  };
+  }
 
   module.randomID = function(length){
     var result = '';
@@ -1080,7 +1080,7 @@ jsPsych.randomization = (function() {
       result += chars[Math.floor(Math.random() * chars.length)];
     }
     return result;
-  };
+  }
 
   function unpackArray(array) {
 
@@ -1160,7 +1160,7 @@ jsPsych.pluginAPI = (function() {
       } else if (parameters.rt_method == 'performance') {
         key_time = performance.now();
       } else if (parameters.rt_method == 'audio') {
-        key_time = parameters.audio_context.currentTime;
+        key_time = parameters.audio_context.currentTime
       }
 
       var valid_response = false;
@@ -1260,7 +1260,7 @@ jsPsych.pluginAPI = (function() {
       code = keylookup[character];
     }
     return code;
-  };
+  }
 
   var keylookup = {
     'backspace': 8,
@@ -1431,13 +1431,13 @@ jsPsych.pluginAPI = (function() {
   module.getAudioBuffer = function(audioID) {
 
     if (audio_buffers[audioID] == 'tmp') {
-      console.error('Audio file failed to load in the time alloted.');
+      console.error('Audio file failed to load in the time alloted.')
       return;
     }
 
     return audio_buffers[audioID];
 
-  };
+  }
 
   // preloading stimuli //
 
@@ -1471,7 +1471,7 @@ jsPsych.pluginAPI = (function() {
         }, function() {
           console.error('Error loading audio file: ' + bufferID);
         });
-      };
+      }
       request.send();
     }
 
@@ -1488,7 +1488,7 @@ jsPsych.pluginAPI = (function() {
       load_audio_file(bufferID);
     }
 
-  };
+  }
 
   module.preloadImages = function(images, callback_complete, callback_load) {
 
@@ -1521,7 +1521,7 @@ jsPsych.pluginAPI = (function() {
         if (n_loaded == images.length) {
           finishfn();
         }
-      };
+      }
 
       img.src = images[i];
     }
@@ -1536,10 +1536,10 @@ jsPsych.pluginAPI = (function() {
       plugin: plugin_name,
       parameter: parameter,
       media_type: media_type
-    };
+    }
 
     preloads.push(preload);
-  };
+  }
 
   module.autoPreload = function(timeline, callback) {
     // list of items to preload
@@ -1571,7 +1571,7 @@ jsPsych.pluginAPI = (function() {
         callback();
       });
     });
-  };
+  }
 
   return module;
 })();
