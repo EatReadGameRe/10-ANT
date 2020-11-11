@@ -1,5 +1,3 @@
-
-
 /* Class to track focus shifts during experiment
 *  **Requires Jquery**
 *
@@ -31,19 +29,19 @@ var focuser = new focus_tracker(window);
 * @param {exp_id} string to specify the experiment id
 */
 function addID(exp_id) {
-  var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY) 
+  var isFullScreen = document.mozFullScreen || document.webkitIsFullScreen || (!window.screenTop && !window.screenY); 
 	jsPsych.data.addDataToLastTrial({
 		exp_id: exp_id,
 		full_screen: isFullScreen,
 		focus_shifts: focuser.get_shifts()
-	})
-	focuser.reset()
+	});
+	focuser.reset();
 }
 
 /*
 * Adds a display stage rather than the generic jsPsych background element
 */
 function getDisplayElement() {
-  $('<div class = display_stage_background></div>').appendTo('body')
-  return $('<div class = display_stage></div>').appendTo('body')
+  $('<div class = display_stage_background></div>').appendTo('body');
+  return $('<div class = display_stage></div>').appendTo('body');
 }
