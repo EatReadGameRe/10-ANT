@@ -76,8 +76,8 @@ var jsPsych = (function() {
     }    
     
     // add CSS class to DOM_target
-    $(DOM_target).addClass(jsPsych-display-element);
-
+    $DOM_target.addClass('jspsych-display-element');
+    
     // create experiment timeline
     timeline = new TimelineNode({
       timeline: opts.timeline
